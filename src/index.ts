@@ -42,5 +42,10 @@ export async function notarize({ appPath, ...otherOptions }: NotarizeOptions) {
     await waitForLegacyNotarize({ uuid, ...otherOptions });
   }
 
-  await stapleApp({ appPath });
+  try {
+    await stapleApp({ appPath });
+  } catch(e) {
+    console.log(e);
+    console.log('An exception was caught and ignored for stapleApp')
+  }
 }
